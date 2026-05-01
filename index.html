@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pantry Planner</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <div>
+        <p class="eyebrow">Home kitchen inventory</p>
+        <h1>Pantry Planner</h1>
+      </div>
+      <div class="header-actions">
+        <button id="seedDemoBtn" class="ghost-button" type="button">Load demo pantry</button>
+        <button id="printBtn" class="ghost-button" type="button">Print grocery list</button>
+        <button id="clearBtn" class="icon-button" type="button" aria-label="Clear all data" title="Clear all data">
+          <span aria-hidden="true">x</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="app-shell">
+      <section class="panel inventory-panel" aria-labelledby="inventoryTitle">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">What you have</p>
+            <h2 id="inventoryTitle">Ingredients</h2>
+          </div>
+          <span id="inventoryCount" class="count-pill">0 items</span>
+        </div>
+
+        <form id="ingredientForm" class="ingredient-form">
+          <label>
+            <span>Name</span>
+            <input id="ingredientName" type="text" placeholder="rice, chicken, spinach" autocomplete="off" required />
+          </label>
+          <label>
+            <span>Amount</span>
+            <input id="ingredientAmount" type="text" placeholder="2 cups, 1 lb, 3 cans" autocomplete="off" />
+          </label>
+          <label>
+            <span>Category</span>
+            <select id="ingredientCategory">
+              <option>Protein</option>
+              <option>Vegetable</option>
+              <option>Fruit</option>
+              <option>Grain</option>
+              <option>Dairy</option>
+              <option>Pantry</option>
+              <option>Spice</option>
+              <option>Other</option>
+            </select>
+          </label>
+          <button type="submit">Add</button>
+        </form>
+
+        <div class="filters" role="group" aria-label="Ingredient filters">
+          <button class="filter-button active" type="button" data-filter="All">All</button>
+          <button class="filter-button" type="button" data-filter="Protein">Protein</button>
+          <button class="filter-button" type="button" data-filter="Vegetable">Vegetable</button>
+          <button class="filter-button" type="button" data-filter="Pantry">Pantry</button>
+          <button class="filter-button" type="button" data-filter="Spice">Spice</button>
+        </div>
+
+        <ul id="ingredientList" class="ingredient-list" aria-live="polite"></ul>
+      </section>
+
+      <section class="panel planning-panel" aria-labelledby="plannerTitle">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Smart meal ideas</p>
+            <h2 id="plannerTitle">Meal schedule</h2>
+          </div>
+          <button id="generateBtn" type="button">Generate week</button>
+        </div>
+
+        <div class="planner-controls">
+          <label>
+            <span>Meals per day</span>
+            <select id="mealsPerDay">
+              <option value="1">Dinner only</option>
+              <option value="2" selected>Lunch + dinner</option>
+              <option value="3">Breakfast + lunch + dinner</option>
+            </select>
+          </label>
+          <label class="range-label">
+            <span>Extra ingredients allowed</span>
+            <input id="extraLimit" type="range" min="0" max="5" value="3" />
+            <strong id="extraLimitLabel">3</strong>
+          </label>
+        </div>
+
+        <div id="emptyState" class="empty-state">
+          Add ingredients or load the demo pantry to generate meal ideas and a grocery list.
+        </div>
+
+        <div id="schedule" class="schedule"></div>
+      </section>
+
+      <aside class="panel grocery-panel" aria-labelledby="groceryTitle">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Only what is missing</p>
+            <h2 id="groceryTitle">Grocery list</h2>
+          </div>
+          <button id="copyListBtn" class="ghost-button" type="button">Copy</button>
+        </div>
+        <ul id="groceryList" class="grocery-list"></ul>
+      </aside>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
